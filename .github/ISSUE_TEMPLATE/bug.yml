@@ -1,0 +1,25 @@
+name: Bug report
+description: Something in ngx-lanes or ngx-probe does not work as expected.
+labels: ["bug"]
+body:
+  - type: dropdown
+    id: package
+    attributes:
+      label: Package
+      options: [ngx-lanes, ngx-probe]
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: Versions
+      placeholder: ngx-lanes 0.1.0, Angular 19.2, zoneless or zone.js
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened and what did you expect?
+      description: A StackBlitz link or a minimal snippet helps a lot.
+    validations:
+      required: true

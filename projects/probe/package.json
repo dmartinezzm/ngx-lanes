@@ -1,0 +1,34 @@
+{
+  "name": "ngx-probe",
+  "version": "0.1.0",
+  "description": "Runtime performance probe for Angular: slow change detection, leaking RxJS subscriptions, duplicate HTTP requests and unvirtualized lists.",
+  "keywords": [
+    "angular",
+    "performance",
+    "rxjs",
+    "memory-leak",
+    "devtools",
+    "change-detection"
+  ],
+  "license": "MIT",
+  "author": "Daniel Martínez",
+  "homepage": "https://dmartinezzm.github.io/ngx-lanes/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dmartinezzm/ngx-lanes.git",
+    "directory": "projects/probe"
+  },
+  "bugs": {
+    "url": "https://github.com/dmartinezzm/ngx-lanes/issues"
+  },
+  "peerDependencies": {
+    "@angular/common": ">=19.0.0",
+    "@angular/core": ">=19.0.0",
+    "@angular/router": ">=19.0.0",
+    "rxjs": "^7.8.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}

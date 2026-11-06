@@ -1,0 +1,47 @@
+name: Lanes Pro waitlist
+description: Get the founder price (€75 per developer) when Lanes Pro ships.
+title: "[Lanes Pro waitlist] "
+labels: ["lanes-pro-waitlist"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks! This issue is public, so leave out anything confidential. You will be notified here when Lanes Pro ships.
+  - type: input
+    id: use-case
+    attributes:
+      label: What do you plan with it?
+      placeholder: e.g. vehicle fleet, staff shifts, machine maintenance, room bookings
+    validations:
+      required: true
+  - type: dropdown
+    id: scale
+    attributes:
+      label: How many bars do you show at once?
+      options:
+        - Under 1,000
+        - 1,000 to 10,000
+        - 10,000 to 100,000
+        - Over 100,000
+    validations:
+      required: true
+  - type: checkboxes
+    id: features
+    attributes:
+      label: Which Pro features do you need first?
+      options:
+        - label: Drag, resize and move bars between resources
+        - label: Canvas rendering for very large plans
+        - label: Conflict and overlap detection
+        - label: Live updates (SignalR, WebSockets, SSE)
+        - label: Export to PNG, PDF or Excel
+        - label: PrimeNG or Angular Material theme
+  - type: input
+    id: team
+    attributes:
+      label: How many developers would use it?
+      placeholder: e.g. 3
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything else?

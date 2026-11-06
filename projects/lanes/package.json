@@ -1,0 +1,33 @@
+{
+  "name": "ngx-lanes",
+  "version": "0.1.0",
+  "description": "Resource timeline for Angular: thousands of rows and tens of thousands of bars, virtualized, signals-based and zoneless-ready.",
+  "keywords": [
+    "angular",
+    "timeline",
+    "gantt",
+    "scheduler",
+    "resource-planning",
+    "virtual-scroll",
+    "signals"
+  ],
+  "license": "MIT",
+  "author": "Daniel Martínez",
+  "homepage": "https://dmartinezzm.github.io/ngx-lanes/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dmartinezzm/ngx-lanes.git",
+    "directory": "projects/lanes"
+  },
+  "bugs": {
+    "url": "https://github.com/dmartinezzm/ngx-lanes/issues"
+  },
+  "peerDependencies": {
+    "@angular/common": ">=19.0.0",
+    "@angular/core": ">=19.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}
