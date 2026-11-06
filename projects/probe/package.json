@@ -1,6 +1,6 @@
 {
   "name": "ngx-probe",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Runtime performance probe for Angular: slow change detection, leaking RxJS subscriptions, duplicate HTTP requests and unvirtualized lists.",
   "keywords": [
     "angular",
