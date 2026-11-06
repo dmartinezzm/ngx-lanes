@@ -1,10 +1,16 @@
 name: Publish to npm
 
-# Se lanza al crear una release en GitHub con una etiqueta como v0.1.0.
-# Requiere el secreto NPM_TOKEN (token "Automation" o "Granular" con permiso de publicación).
+# Se lanza al crear una release en GitHub con una etiqueta como v0.1.0, o a mano desde
+# Actions → Publish to npm → Run workflow (para reintentar una release que falló).
+# Requiere el secreto NPM_TOKEN (token granular con permiso de publicación).
 on:
   release:
     types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Release tag to publish, e.g. v0.1.0
+        required: true
 
 permissions:
   contents: read
@@ -15,6 +21,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.release.tag_name || inputs.tag }}
       - uses: pnpm/action-setup@v6
       - uses: actions/setup-node@v7
         with:
@@ -27,15 +35,18 @@ jobs:
       - run: pnpm ng build lanes
       - run: pnpm ng build probe
       - name: Check versions match the tag
+        env:
+          RELEASE_TAG: ${{ github.event.release.tag_name || inputs.tag }}
         run: |
-          TAG="${GITHUB_REF_NAME#v}"
+          TAG="${RELEASE_TAG#v}"
           for pkg in dist/lanes dist/probe; do
             V=$(node -p "require('./$pkg/package.json').version")
             if [ "$V" != "$TAG" ]; then echo "$pkg is $V but the tag is $TAG"; exit 1; fi
           done
-      - run: npm publish dist/lanes --provenance --access public
+      # La ruta empieza por ./ a propósito: sin ella npm lee "dist/lanes" como un repo de GitHub.
+      - run: npm publish ./dist/lanes --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - run: npm publish dist/probe --provenance --access public
+      - run: npm publish ./dist/probe --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
