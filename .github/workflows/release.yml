@@ -2,7 +2,8 @@ name: Publish to npm
 
 # Se lanza al crear una release en GitHub con una etiqueta como v0.1.0, o a mano desde
 # Actions → Publish to npm → Run workflow (para reintentar una release que falló).
-# Requiere el secreto NPM_TOKEN (token granular con permiso de publicación).
+# Publica con "trusted publishing" de npm: sin tokens. Cada paquete debe tener configurado en
+# npmjs.com (Settings → Trusted publishing) este repo y el archivo release.yml.
 on:
   release:
     types: [published]
@@ -14,7 +15,7 @@ on:
 
 permissions:
   contents: read
-  id-token: write # para --provenance
+  id-token: write # trusted publishing y --provenance
 
 jobs:
   publish:
@@ -29,6 +30,8 @@ jobs:
           node-version: 22
           cache: pnpm
           registry-url: https://registry.npmjs.org
+      # Trusted publishing necesita npm 11.5.1 o posterior.
+      - run: npm install -g npm@latest
       - run: pnpm install --frozen-lockfile
       - run: pnpm ng test lanes --watch=false
       - run: pnpm ng test probe --watch=false
@@ -45,8 +48,4 @@ jobs:
           done
       # La ruta empieza por ./ a propósito: sin ella npm lee "dist/lanes" como un repo de GitHub.
       - run: npm publish ./dist/lanes --provenance --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - run: npm publish ./dist/probe --provenance --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

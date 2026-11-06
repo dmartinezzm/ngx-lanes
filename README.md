@@ -49,7 +49,7 @@ If you change a library while `ng serve` is running, rebuild it and restart the 
 
 1. Bump `version` in `projects/lanes/package.json` and `projects/probe/package.json` (both use the same version).
 2. Create a GitHub release with the tag `v<version>`, for example `v0.1.0`.
-3. The **Publish to npm** workflow runs the tests, builds and publishes both packages with provenance. It needs the `NPM_TOKEN` secret.
+3. The **Publish to npm** workflow runs the tests, builds and publishes both packages with provenance through npm trusted publishing (no tokens). Each package must list this repository and `release.yml` as its trusted publisher on npmjs.com.
 
 ## License
 
