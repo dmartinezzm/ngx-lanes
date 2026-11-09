@@ -1,6 +1,6 @@
 {
   "name": "ngx-lanes",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Resource timeline for Angular: thousands of rows and tens of thousands of bars, virtualized, signals-based and zoneless-ready.",
   "keywords": [
     "angular",

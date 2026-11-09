@@ -101,6 +101,9 @@ const MIN_LABEL_WIDTH = 80;
               <button
                 type="button"
                 class="lanes-bar"
+                [class]="bar.item.source.className ?? ''"
+                [attr.data-lanes-item]="bar.item.source.id"
+                [attr.data-lanes-resource]="row.resource.id"
                 [style.left.px]="bar.left"
                 [style.width.px]="bar.width"
                 [style.background]="bar.item.source.color ?? null"
@@ -482,6 +485,30 @@ export class LanesTimeline<TData = unknown> {
     const ms = toMs(time);
     this.anchorTime = ms;
     this.setScrollLeft(this.scale().toX(ms) - this.viewport().width / 2, false);
+  }
+
+  /**
+   * Instante (ms) bajo una coordenada X de pantalla, p. ej. `event.clientX`.
+   * Útil para crear o mover elementos con el ratón.
+   */
+  timeAtClientX(clientX: number): number {
+    const el = this.body().nativeElement;
+    const x = clientX - el.getBoundingClientRect().left - el.clientLeft + el.scrollLeft;
+    return this.scale().toTime(x);
+  }
+
+  /** Recurso bajo una coordenada Y de pantalla, p. ej. `event.clientY`; `undefined` fuera de las filas. */
+  resourceAtClientY(clientY: number): LanesResource | undefined {
+    const el = this.body().nativeElement;
+    const y = clientY - el.getBoundingClientRect().top - el.clientTop + el.scrollTop;
+    if (y < 0) return undefined;
+    return this.resources()[Math.floor(y / this.rowHeight())];
+  }
+
+  /** Coordenada X de pantalla de un instante (inversa de `timeAtClientX`). */
+  clientXAtTime(time: LanesDateInput): number {
+    const el = this.body().nativeElement;
+    return this.scale().toX(toMs(time)) + el.getBoundingClientRect().left + el.clientLeft - el.scrollLeft;
   }
 
   /** Desplaza la vista verticalmente hasta un recurso. */

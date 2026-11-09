@@ -72,6 +72,23 @@ export class Planning {
 Outputs: `itemClick`, `itemDoubleClick` — `{ item, resource, event }`.
 Methods: `scrollToTime(date)`, `scrollToResource(id)`.
 
+Item fields: `id`, `resourceId`, `start`, `end`, `label?`, `color?`, `className?` (extra CSS classes on the bar), `data?`.
+
+### Building on top of Lanes
+
+Each bar carries `data-lanes-item` and `data-lanes-resource` attributes, and the component exposes coordinate helpers, so you can add your own interactions (create on click, custom tooltips, context menus):
+
+```ts
+const timeline = viewChild.required(LanesTimeline);
+
+onCanvasClick(e: MouseEvent) {
+  const time = this.timeline().timeAtClientX(e.clientX);       // ms
+  const resource = this.timeline().resourceAtClientY(e.clientY); // LanesResource | undefined
+}
+```
+
+`clientXAtTime(date)` does the inverse.
+
 ## Theming
 
 Set these CSS variables on `lanes-timeline`: `--lanes-bg`, `--lanes-border`, `--lanes-grid`, `--lanes-text`, `--lanes-text-muted`, `--lanes-bar-bg`, `--lanes-bar-text`, `--lanes-bar-radius`, `--lanes-today`, `--lanes-row-alt-bg`, `--lanes-header-height`, `--lanes-font`.

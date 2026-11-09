@@ -104,6 +104,38 @@ describe('LanesTimeline', () => {
   });
 });
 
+describe('LanesTimeline: ganchos para extensiones', () => {
+  it('aplica className del item y expone ids en atributos data', async () => {
+    const fixture = TestBed.createComponent(Host);
+    fixture.componentInstance.resources.set([{ id: 'a', label: 'A' }]);
+    fixture.componentInstance.items.set([
+      { id: 'x', resourceId: 'a', start: START, end: START + DAY, className: 'conflict urgent' },
+    ]);
+    await fixture.whenStable();
+    const bar: HTMLElement = fixture.nativeElement.querySelector('.lanes-bar');
+    expect(bar.classList.contains('lanes-bar')).toBe(true);
+    expect(bar.classList.contains('conflict')).toBe(true);
+    expect(bar.classList.contains('urgent')).toBe(true);
+    expect(bar.dataset['lanesItem']).toBe('x');
+    expect(bar.dataset['lanesResource']).toBe('a');
+  });
+
+  it('traduce coordenadas de pantalla a tiempo y recurso, y de vuelta', async () => {
+    const fixture = await render(5, 3);
+    const timeline = fixture.debugElement.children[0].componentInstance as LanesTimeline;
+    // En jsdom el rectángulo del cuerpo está en (0, 0) y sin scroll.
+    expect(timeline.resourceAtClientY(0)?.id).toBe('r0');
+    expect(timeline.resourceAtClientY(40 * 2 + 5)?.id).toBe('r2');
+    expect(timeline.resourceAtClientY(40 * 5 + 1)).toBeUndefined();
+    expect(timeline.resourceAtClientY(-1)).toBeUndefined();
+
+    const t = START + 2 * DAY;
+    const x = timeline.clientXAtTime(t);
+    expect(x).toBeGreaterThan(0);
+    expect(timeline.timeAtClientX(x)).toBeCloseTo(t, -3);
+  });
+});
+
 describe('LanesTimeline con scroll', () => {
   it('al cambiar de zoom mantiene centrado el mismo instante', async () => {
     const fixture = await render(5, 30);

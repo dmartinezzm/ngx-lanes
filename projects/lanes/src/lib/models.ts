@@ -18,6 +18,8 @@ export interface LanesItem<TData = unknown> {
   label?: string;
   /** Color CSS de la barra; si no se da, se usa --lanes-bar-bg. */
   color?: string;
+  /** Clases CSS extra para la barra (p. ej. para marcar conflictos o estados). */
+  className?: string;
   data?: TData;
 }
 
