@@ -14,6 +14,19 @@ export const WAITLIST_URL = 'https://github.com/dmartinezzm/ngx-lanes/issues/new
         enterprise Gantt suites too expensive and free components too limited.
       </p>
 
+      <figure>
+        <img
+          src="lanes-pro.gif"
+          width="800"
+          height="448"
+          alt="Lanes Pro: a bar is dragged to another resource, resized from its edge, and an overlapping drop is rejected"
+        />
+        <figcaption>
+          The editing features already work: drag between resources, resize, keyboard editing, overlap detection and
+          drop validation. Recorded from the Lanes Pro playground.
+        </figcaption>
+      </figure>
+
       <table>
         <thead>
           <tr>
@@ -27,7 +40,7 @@ export const WAITLIST_URL = 'https://github.com/dmartinezzm/ngx-lanes/issues/new
             <tr>
               <td>{{ row.name }}</td>
               <td>{{ row.free ? 'Yes' : '—' }}</td>
-              <td>Yes</td>
+              <td>{{ row.pro }}</td>
             </tr>
           }
         </tbody>
@@ -60,6 +73,21 @@ export const WAITLIST_URL = 'https://github.com/dmartinezzm/ngx-lanes/issues/new
       font-size: 17px;
       color: #334155;
     }
+    figure {
+      margin: 24px 0;
+    }
+    figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+    }
+    figcaption {
+      margin-top: 8px;
+      font-size: 13px;
+      color: #64748b;
+    }
     table {
       width: 100%;
       border-collapse: collapse;
@@ -73,7 +101,7 @@ export const WAITLIST_URL = 'https://github.com/dmartinezzm/ngx-lanes/issues/new
     }
     th:not(:first-child),
     td:not(:first-child) {
-      width: 80px;
+      width: 90px;
       text-align: center;
     }
     .price {
@@ -103,14 +131,15 @@ export const WAITLIST_URL = 'https://github.com/dmartinezzm/ngx-lanes/issues/new
 export class ProPage {
   protected readonly waitlistUrl = WAITLIST_URL;
   protected readonly features = [
-    { name: 'Resource rows, bars, day/week/month zoom', free: true },
-    { name: 'Virtualized rendering, signals, zoneless-ready', free: true },
-    { name: 'Drag, resize and move bars between resources', free: false },
-    { name: 'Canvas rendering for 10,000+ visible bars', free: false },
-    { name: 'Conflict and overlap detection', free: false },
-    { name: 'Live updates from SignalR, WebSockets or SSE', free: false },
-    { name: 'Export to PNG, PDF and Excel', free: false },
-    { name: 'PrimeNG and Angular Material themes', free: false },
-    { name: 'Email support', free: false },
+    { name: 'Resource rows, bars, day/week/month zoom', free: true, pro: 'Yes' },
+    { name: 'Virtualized rendering, signals, zoneless-ready', free: true, pro: 'Yes' },
+    { name: 'Drag, resize and move bars between resources', free: false, pro: 'Ready' },
+    { name: 'Keyboard editing and drop validation', free: false, pro: 'Ready' },
+    { name: 'Conflict and overlap detection', free: false, pro: 'Ready' },
+    { name: 'Canvas rendering for 10,000+ visible bars', free: false, pro: 'Planned' },
+    { name: 'Live updates from SignalR, WebSockets or SSE', free: false, pro: 'Planned' },
+    { name: 'Export to PNG, PDF and Excel', free: false, pro: 'Planned' },
+    { name: 'PrimeNG and Angular Material themes', free: false, pro: 'Planned' },
+    { name: 'Email support', free: false, pro: 'Yes' },
   ];
 }

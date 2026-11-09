@@ -33,7 +33,9 @@ Try ngx-lanes without installing anything: [StackBlitz example](https://stackbli
 
 ## Lanes Pro
 
-Drag and drop, canvas rendering, conflict detection, live updates and export are coming in Lanes Pro. [Join the waitlist](https://dmartinezzm.github.io/ngx-lanes/pro).
+Drag and drop between resources, resizing, keyboard editing and conflict detection already work in **Lanes Pro**; canvas rendering, live updates and PNG/PDF/Excel export are next. [Join the waitlist](https://dmartinezzm.github.io/ngx-lanes/pro).
+
+![Lanes Pro: dragging a bar to another resource, resizing it and rejecting an overlapping drop](https://raw.githubusercontent.com/dmartinezzm/ngx-lanes/main/docs/lanes-pro.gif)
 
 ## Development
 
