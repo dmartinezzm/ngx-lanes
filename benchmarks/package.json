@@ -1,0 +1,32 @@
+{
+  "name": "ngx-lanes-benchmarks",
+  "private": true,
+  "scripts": {
+    "build": "ng build",
+    "bench": "node run.mjs",
+    "postinstall": "node scripts/fix-schedula-angular.mjs"
+  },
+  "dependencies": {
+    "@angular/cdk": "^22.2.0",
+    "@angular/common": "^22.2.0",
+    "@angular/compiler": "^22.2.0",
+    "@angular/core": "^22.2.0",
+    "@angular/platform-browser": "^22.2.0",
+    "@date-fns/tz": "^1.2.0",
+    "@worktile/gantt": "^22.0.0",
+    "date-fns": "^4.1.0",
+    "html2canvas": "^1.4.1",
+    "ngx-lanes": "^0.1.1",
+    "rxjs": "~7.8.0",
+    "schedula-core": "^1.8.6",
+    "schedula-core-angular": "^1.4.0",
+    "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "@angular/build": "^22.2.0",
+    "@angular/cli": "^22.2.0",
+    "@angular/compiler-cli": "^22.2.0",
+    "playwright-core": "^1.50.0",
+    "typescript": "~6.0.2"
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "date": "2026-11-09T10:01:02.963Z",
+  "chrome": "153.0.8010.12",
+  "viewport": {
+    "width": 1400,
+    "height": 850
+  },
+  "results": [
+    {
+      "lib": "lanes",
+      "cpuRate": 1,
+      "runs": 3,
+      "loadMs": 145,
+      "domNodes": 344,
+      "frameP50": 16.7,
+      "frameP95": 16.7,
+      "slowFramesPct": 0,
+      "longTaskMs": 0,
+      "scrolledVertically": true,
+      "scrolledHorizontally": true,
+      "errors": []
+    },
+    {
+      "lib": "ngx-gantt",
+      "cpuRate": 1,
+      "runs": 3,
+      "loadMs": 295,
+      "domNodes": 417,
+      "frameP50": 16.7,
+      "frameP95": 16.7,
+      "slowFramesPct": 0,
+      "longTaskMs": 0,
+      "scrolledVertically": true,
+      "scrolledHorizontally": true,
+      "errors": []
+    },
+    {
+      "lib": "schedula",
+      "cpuRate": 1,
+      "runs": 3,
+      "loadMs": 13599,
+      "domNodes": 186721,
+      "frameP50": 50,
+      "frameP95": 233.3,
+      "slowFramesPct": 59.2,
+      "longTaskMs": 39319,
+      "scrolledVertically": true,
+      "scrolledHorizontally": false,
+      "errors": []
+    },
+    {
+      "lib": "lanes",
+      "cpuRate": 4,
+      "runs": 3,
+      "loadMs": 456,
+      "domNodes": 344,
+      "frameP50": 16.7,
+      "frameP95": 16.8,
+      "slowFramesPct": 0,
+      "longTaskMs": 0,
+      "scrolledVertically": true,
+      "scrolledHorizontally": true,
+      "errors": []
+    },
+    {
+      "lib": "ngx-gantt",
+      "cpuRate": 4,
+      "runs": 3,
+      "loadMs": 1067,
+      "domNodes": 417,
+      "frameP50": 16.7,
+      "frameP95": 49.9,
+      "slowFramesPct": 6.6,
+      "longTaskMs": 1360,
+      "scrolledVertically": true,
+      "scrolledHorizontally": true,
+      "errors": []
+    },
+    {
+      "lib": "schedula",
+      "cpuRate": 4,
+      "runs": 3,
+      "loadMs": 65643,
+      "domNodes": 186721,
+      "frameP50": 216.7,
+      "frameP95": 1100,
+      "slowFramesPct": 100,
+      "longTaskMs": 158713,
+      "scrolledVertically": true,
+      "scrolledHorizontally": false,
+      "errors": []
+    }
+  ]
+}

@@ -11,6 +11,16 @@ Two open-source tools for Angular apps that handle a lot of data.
 
 Both work with Angular 19 or later, zoneless or with zone.js.
 
+## Benchmark
+
+1,000 resources and 10,000 bars, CPU throttled 4× ([method and full results](benchmarks/README.md)):
+
+| Library | Load | DOM nodes | Slow frames while scrolling |
+| --- | --- | --- | --- |
+| **ngx-lanes** | **0.46 s** | **344** | **0%** |
+| @worktile/gantt (ngx-gantt) | 1.07 s | 417 | 6.6% |
+| schedula-core-angular | 66 s | 186,721 | 100% |
+
 ## Quick start
 
 ```bash
@@ -43,6 +53,7 @@ If you change a library while `ng serve` is running, rebuild it and restart the 
 | `projects/probe` | ngx-probe source and tests |
 | `projects/demo` | Demo app deployed to GitHub Pages |
 | `examples/basic` | Minimal app that installs ngx-lanes from npm (StackBlitz) |
+| `benchmarks` | Reproducible benchmark against ngx-gantt and schedula-core |
 | `.github/workflows` | CI, demo deployment and npm publishing |
 
 ### Releasing

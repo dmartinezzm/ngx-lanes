@@ -13,6 +13,10 @@
 - **Accessible bars:** real buttons with a label that includes the resource and the dates.
 - **Themeable** with CSS variables.
 
+## Benchmark
+
+Same plan of 1,000 resources and 10,000 bars, CPU throttled 4×: ngx-lanes loads in 0.46 s and scrolls with 0% slow frames; ngx-gantt loads in 1.07 s with 6.6% slow frames; schedula-core takes 66 s. [Method and full results](https://github.com/dmartinezzm/ngx-lanes/tree/main/benchmarks).
+
 ## Install
 
 ```bash
