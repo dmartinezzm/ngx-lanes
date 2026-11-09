@@ -3,7 +3,8 @@ name: Publish to npm
 # Se lanza al crear una release en GitHub con una etiqueta como v0.1.0, o a mano desde
 # Actions → Publish to npm → Run workflow (para reintentar una release que falló).
 # Publica con "trusted publishing" de npm: sin tokens. Cada paquete debe tener configurado en
-# npmjs.com (Settings → Trusted publishing) este repo y el archivo release.yml.
+# npmjs.com (Settings → Trusted publishing) este repo y el archivo release.yml, con permiso
+# "npm stage publish". Después hay que aprobar cada versión en npmjs.com → Staged Packages.
 on:
   release:
     types: [published]
@@ -46,6 +47,9 @@ jobs:
             V=$(node -p "require('./$pkg/package.json').version")
             if [ "$V" != "$TAG" ]; then echo "$pkg is $V but the tag is $TAG"; exit 1; fi
           done
-      # La ruta empieza por ./ a propósito: sin ella npm lee "dist/lanes" como un repo de GitHub.
-      - run: npm publish ./dist/lanes --provenance --access public
-      - run: npm publish ./dist/probe --provenance --access public
+      # Publicación por fases: el paquete queda en npmjs.com → Staged Packages hasta que lo
+      # apruebes con tu código 2FA. Es lo que permite el trusted publisher ("npm stage publish").
+      - run: npm stage publish --provenance --access public
+        working-directory: dist/lanes
+      - run: npm stage publish --provenance --access public
+        working-directory: dist/probe
