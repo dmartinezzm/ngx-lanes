@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
  * Formulario de Tally para apuntarse sin cuenta de GitHub. Vacío = solo se muestra el issue form de GitHub.
  * Pega aquí el enlace público del formulario (https://tally.so/r/...).
  */
-export const WAITLIST_FORM_URL = '';
+export const WAITLIST_FORM_URL = 'https://tally.so/r/KpxaEM';
 
 /** Alternativa pública: issue form de GitHub con la etiqueta lanes-pro-waitlist. */
 export const WAITLIST_GITHUB_URL = 'https://github.com/dmartinezzm/ngx-lanes/issues/new?template=lanes-pro-waitlist.yml';
