@@ -1,7 +1,13 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-/** Enlace al formulario de lista de espera (issue form de GitHub, sin servicios externos). */
-export const WAITLIST_URL = 'https://github.com/dmartinezzm/ngx-lanes/issues/new?template=lanes-pro-waitlist.yml';
+/**
+ * Formulario de Tally para apuntarse sin cuenta de GitHub. Vacío = solo se muestra el issue form de GitHub.
+ * Pega aquí el enlace público del formulario (https://tally.so/r/...).
+ */
+export const WAITLIST_FORM_URL = 'https://tally.so/r/KpxaEM';
+
+/** Alternativa pública: issue form de GitHub con la etiqueta lanes-pro-waitlist. */
+export const WAITLIST_GITHUB_URL = 'https://github.com/dmartinezzm/ngx-lanes/issues/new?template=lanes-pro-waitlist.yml';
 
 @Component({
   selector: 'app-pro-page',
@@ -52,11 +58,20 @@ export const WAITLIST_URL = 'https://github.com/dmartinezzm/ngx-lanes/issues/new
           <strong>€75 per developer</strong>, perpetual licence with a year of updates, for the first teams on the
           waitlist. The regular price will be €149.
         </p>
-        <a class="cta" [href]="waitlistUrl" target="_blank" rel="noopener">Join the waitlist</a>
-        <p class="note">
-          The waitlist is a short GitHub form: what you plan, how many items and which features you need first. It is
-          public on GitHub, so leave out anything confidential.
-        </p>
+        @if (formUrl) {
+          <a class="cta" [href]="formUrl" target="_blank" rel="noopener">Join the waitlist</a>
+          <p class="note">
+            A one-minute private form: your email, what you plan, how many items and which features you need first. No
+            GitHub account needed. Prefer to do it in public?
+            <a [href]="githubUrl" target="_blank" rel="noopener">Open a waitlist issue on GitHub</a>.
+          </p>
+        } @else {
+          <a class="cta" [href]="githubUrl" target="_blank" rel="noopener">Join the waitlist</a>
+          <p class="note">
+            The waitlist is a short GitHub form: what you plan, how many items and which features you need first. It is
+            public on GitHub, so leave out anything confidential.
+          </p>
+        }
       </section>
     </article>
   `,
@@ -129,7 +144,8 @@ export const WAITLIST_URL = 'https://github.com/dmartinezzm/ngx-lanes/issues/new
   `,
 })
 export class ProPage {
-  protected readonly waitlistUrl = WAITLIST_URL;
+  protected readonly formUrl = WAITLIST_FORM_URL;
+  protected readonly githubUrl = WAITLIST_GITHUB_URL;
   protected readonly features = [
     { name: 'Resource rows, bars, day/week/month zoom', free: true, pro: 'Yes' },
     { name: 'Virtualized rendering, signals, zoneless-ready', free: true, pro: 'Yes' },
